@@ -22,7 +22,7 @@ class ButtonWindow:
         self.combobox_input = tk.ttk.Combobox(
             master=self.button_frm,
             width=10,
-            font='Arial',
+            font='Georgia 12',
             textvariable=combobox_var_in,
             values=combobox_values,
             state='readonly'
