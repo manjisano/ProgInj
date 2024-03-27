@@ -16,9 +16,9 @@ class EEEConverter:
         self.main_window = MainWindow()
 
         # Создание объекта для величин длины
-        self.length_values = ['Миллиметр', 'Сантиметр', 'Дециметр', 'Метр', 'Километр', 'Фут', 'Ярд', 'Дюйм', 'Миля',
+        length_values = ['Миллиметр', 'Сантиметр', 'Дециметр', 'Метр', 'Километр', 'Фут', 'Ярд', 'Дюйм', 'Миля',
                               'Морская миля']
-        self.length_si = {'Миллиметр': 0.001,
+        length_si = {'Миллиметр': 0.001,
                           'Сантиметр': 0.01,
                           'Дециметр': 0.1,
                           'Метр': 1,
@@ -28,11 +28,11 @@ class EEEConverter:
                           'Дюйм': 0.00254,
                           'Миля': 1609.344,
                           'Морская миля': 1852}
-        self.length_window = ButtonWindow(self.main_window.main_frm, self.length_values, self.length_si)
+        self.length_window = ButtonWindow(self.main_window.main_frm, length_values, length_si)
 
         # Создание объекта для кнопки величин массы
-        self.weight_values = ['Миллиграмм', 'Грамм', 'Килограмм', 'Центнер', 'Тонн', 'Пуд', 'Фунт', 'Карат', 'Унция']
-        self.weight_si = {'Пуд': 16.38,
+        weight_values = ['Миллиграмм', 'Грамм', 'Килограмм', 'Центнер', 'Тонн', 'Пуд', 'Фунт', 'Карат', 'Унция']
+        weight_si = {'Пуд': 16.38,
                           'Килограмм': 1,
                           'Миллиграмм': 0.000001,
                           'Грамм': 0.001,
@@ -41,14 +41,14 @@ class EEEConverter:
                           'Центнер': 100,
                           'Карат': 0.0002,
                           'Унция': 0.028}
-        self.weight_window = ButtonWindow(self.main_window.main_frm, self.weight_values, self.weight_si)
+        self.weight_window = ButtonWindow(self.main_window.main_frm, weight_values, weight_si)
 
         # Создание объекта для кнопки величин объема
-        self.volume_values = ['Миллилитр', 'Литр', 'Кубический миллиметр', 'Кубический дециметр',
+        volume_values = ['Миллилитр', 'Литр', 'Кубический миллиметр', 'Кубический дециметр',
                               'Кубический сантиметр',
                               'Кубический метр', 'Кварта', 'Пинта', 'Галлон', 'Унция', 'Кубический фут',
                               'Кубический дюйм']
-        self.volume_si = {'Литр': 1,
+        volume_si = {'Литр': 1,
                           'Миллилитр': 0.001,
                           'Кубический метр': 1000,
                           'Кубический дециметр': 1,
@@ -60,7 +60,7 @@ class EEEConverter:
                           'Унция': 0.0296,
                           'Кубический фут': 28.3168,
                           'Кубический дюйм': 0.0164}
-        self.size_window = ButtonWindow(self.main_window.main_frm, self.volume_values, self.volume_si)
+        self.size_window = ButtonWindow(self.main_window.main_frm, volume_values, volume_si)
 
         # Назначение команды для кнопок главного экрана
         self.main_window.btn_lenght['command'] = self.length_window.run_window
