@@ -43,7 +43,8 @@ class ButtonWindow:
             width=20,
             fg='white',
             bg="black",
-            font='Georgia 14'
+            font='Georgia 18',
+            justify='center'
         )
 
         self.buttons_frm = tk.Frame(
@@ -84,11 +85,16 @@ class ButtonWindow:
         # Функция для расчета величин
         selection_input = self.combobox_input.get()
         selection_print = self.combobox_print.get()
-
         # Проверка на правильность ввода и формула для перевода
         try:
-            self.lbl_result['text'] = '%.4f' % (
-                        float(self.insert_ent.get()) * self.si[selection_input] / self.si[selection_print])
+            if len(self.insert_ent.get())<=6:
+                result = float(self.insert_ent.get()) * self.si[selection_input] / self.si[selection_print]
+                if result > 0.00009:
+                    self.lbl_result['text'] = f'{result}'
+                else:
+                    self.lbl_result['text'] = 'Число слишком мало для вывода'
+            else:
+                self.lbl_result['text'] = 'Вводимое число слишком большое'
         except ValueError:
             self.lbl_result['text'] = 'Введенно неверное значение'
 
