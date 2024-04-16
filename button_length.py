@@ -21,7 +21,8 @@ class ButtonWindow:
         combobox_var_out = tk.StringVar(value=combobox_values[0])
         self.combobox_input = tk.ttk.Combobox(
             master=self.button_frm,
-            width=15,
+            width=28,
+            height=20,
             font='Georgia 14',
             textvariable=combobox_var_in,
             values=combobox_values,
@@ -30,7 +31,8 @@ class ButtonWindow:
 
         self.combobox_print = tk.ttk.Combobox(
             master=self.button_frm,
-            width=15,
+            width=28,
+            height=20,
             font='Georgia 14',
             textvariable=combobox_var_out,
             values=combobox_values,
@@ -40,9 +42,10 @@ class ButtonWindow:
         # Создание других виджетов
         self.insert_ent = tk.Entry(
             master=self.button_frm,
-            width=20,
-            fg='white',
-            bg="black",
+            width=25,
+            text='Введите число',
+            fg='black',
+            bg="grey",
             font='Georgia 18',
             justify='center'
         )
@@ -70,32 +73,38 @@ class ButtonWindow:
             master=self.buttons_frm,
             text='\N{Black Universal Recycling Symbol}',
             command=self.clear_text,
-            font= 'Georgia 14'
+            font='Georgia 14'
         )
 
         self.lbl_result = tk.Label(
             master=self.button_frm,
-            width=20,
-            fg='white',
-            bg='black',
+            width=32,
+            bg="grey",
+            borderwidth='2',
             font='Georgia 14'
         )
 
     def lenght_convert(self):
-        # Функция для расчета величин
+        # Процеура для расчета величин
+        # Принимает значения из комбобокса
         selection_input = self.combobox_input.get()
         selection_print = self.combobox_print.get()
         # Проверка на правильность ввода и формула для перевода
         try:
-            if len(self.insert_ent.get())<=6:
+            if float(self.insert_ent.get()) < 999999 and float(self.insert_ent.get()) > 0.00009:
+                # Расчет результата
                 result = float(self.insert_ent.get()) * self.si[selection_input] / self.si[selection_print]
-                if result > 0.00009:
+                if result > 0.00009 and result < 999999:
+                    # Вывод получившгося значения
                     self.lbl_result['text'] = f'{result}'
                 else:
-                    self.lbl_result['text'] = 'Число слишком мало для вывода'
+                    # Вывод при слишком малом или большом введенном значении
+                    self.lbl_result['text'] = 'Число слишком мало или велико для вывода'
             else:
-                self.lbl_result['text'] = 'Вводимое число слишком большое'
+                # Вывод при слишком большом или малом введенном значении
+                self.lbl_result['text'] = 'Вводимое число слишком велико или мало'
         except ValueError:
+            # Вывод при ошибки несоответсвия типов
             self.lbl_result['text'] = 'Введенно неверное значение'
 
     def run_window(self):
@@ -106,14 +115,16 @@ class ButtonWindow:
         self.combobox_input.pack()
 
         self.buttons_frm.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-        self.convert_btn.grid(row=0, column=1, padx=20, pady=10)
-        self.reverse_btn.grid(row=0, column=0, padx=25, pady=10)
-        self.clean_btn.grid(row=0, column=2, padx=20, pady=10)
+        self.convert_btn.grid(row=0, column=1, padx=40, pady=10)
+        self.reverse_btn.grid(row=0, column=0, padx=50, pady=10)
+        self.clean_btn.grid(row=0, column=2, padx=40, pady=10)
 
-        self.lbl_result.pack(ipady=10)
         self.combobox_print.pack()
+        self.lbl_result.pack(ipady=10)
+
 
     def clear_text(self):
+        # Процедура очистки виджетов
 
         self.insert_ent.delete(0, 'end')
         self.lbl_result['text'] = ''

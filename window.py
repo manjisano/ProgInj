@@ -4,6 +4,7 @@ import tkinter as tk
 class MainWindow:
 
     def __init__(self):
+        # Иницилизация виджетов
         self.main_frm = tk.Frame(
             relief='flat',
             bg='black'
