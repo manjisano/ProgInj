@@ -59,7 +59,7 @@ class ButtonWindow:
         self.convert_btn = tk.Button(
             master=self.buttons_frm,
             text='\N{RIGHTWARDS BLACK ARROW}',
-            command=self.lenght_convert,
+            command=self.convert,
             font='Georgia 14'
         )
 
@@ -84,7 +84,7 @@ class ButtonWindow:
             font='Georgia 14'
         )
 
-    def lenght_convert(self):
+    def convert(self):
         # Процеура для расчета величин
         # Принимает значения из комбобокса
         selection_input = self.combobox_input.get()
